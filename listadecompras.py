@@ -71,7 +71,7 @@ while True:
     if len(lista) == 0:
         print("Lista vazia.")
     
-    # Mostra cada item da lista na tela se não for vazio
+    # Mostra cada item da lista na tela se não for vazia
     for item in lista:
         if item != "":
             print(item)
