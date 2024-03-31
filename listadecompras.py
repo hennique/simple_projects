@@ -2,11 +2,11 @@
 lista = []
  
 print("******************")
-print("Lista de compras")
+print("Shopping List")
 print("******************")
-print("Digite o nome de um item para adicioná-lo na lista, e \nnovamente para removê-lo\n")
-print("Comandos")
-print("/cesta - Cria uma lista com uma cesta básica\n/limpar - Elimina todos os itens da lista\n/criar - Cria uma lista\n/lista - Mostra a lista que você criou\n/sair - Sai da lista de compras")
+print("Type an item to add it, and \nagain to remove it\n")
+print("Commands")
+print("/cesta - Create a list with a basic food basket\n/limpar - Remove all list items\n/criar - Create a list\n/lista - Show the list you created\n/sair - Leave.")
 print()
  
 # Loop principal para interação contínua
@@ -19,7 +19,7 @@ while True:
     
     # Impede que o usuário adicione um item vazio
     if adicionar == "":
-        print("Por favor insira algo.\n")
+        print("Please add something.\n")
         ap = False
  
     # Deleta um item se ele já existir na lista
@@ -35,11 +35,11 @@ while True:
     elif adicionar == "/cesta":
         ap = False
         
-        lista = ["Arroz", "Feijao", "Oleo", "Macarrao", "Sal", "Açucar", "Pacote de bolacha", "Leite", "Cafe"]
+        lista = ["Rice", "Beans", "Oil", "Noodles", "Salt", "Sugar", "Cookie Package", "Milk", "Coffee"]
     elif adicionar == "/criar":
         ap = False
-        print("Criação de lista")
-        print("/pronto para terminar\n")
+        print("List creation")
+        print("/pronto to finish\n")
         li = []
         
         # Loop para permitir a criação da lista pelo usuário
@@ -59,7 +59,7 @@ while True:
                 if i not in lista:
                     lista.append(i)
         except:
-            print("Você ainda não criou uma lista.\n")
+            print("You still need to create a list.\n")
     elif adicionar == "/sair":
         break     
         
@@ -69,7 +69,7 @@ while True:
         
     # Informa que a lista está vazia se não houver itens nela
     if len(lista) == 0:
-        print("Lista vazia.")
+        print("Empty list.")
     
     # Mostra cada item da lista na tela se não for vazia
     for item in lista:
