@@ -1,3 +1,3 @@
-# listadecompras
+# simple_projects
 
-A simple code for the purpose of being a shopping list. It was made to familiarize myself with GitHub.
+A list of simple projects to familiarize myself with GitHub.
