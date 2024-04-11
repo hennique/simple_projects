@@ -1,12 +1,17 @@
+from traceback import print_tb
+
+
 shop_list = []
  
 print("******************")
 print("Shopping List")
 print("******************")
 print("Type an item to add it, and \nagain to remove it\n")
-print("Commands")
-print("/basket - Create a list with a basic food basket\n/clean - Remove all list items\n/create - Create a list\n/list - Show the list you created\n/leave - Leave.")
-print()
+def show_commands():
+    print("Commands")
+    print("/basket - Create a list with a basic food basket\n/clean - Remove all list items\n/create - Create a list\n/list - Show the list you created\n/help - Show all commands\n/leave - Leave.")
+    print()
+show_commands()
  
 # Main loop
 while True:    
@@ -43,12 +48,16 @@ while True:
         
         # Loop to allow the user to create the list
         while True:
-            create_list = input(": ")
-            
+            create_list = input(": ")         
+
             if create_list == "/ready":
                 break
                
             li.append(create_list)
+
+            for item in li:
+                if item != "":
+                    print(item)
             
     elif add == "/list":
         can_be_added = False
@@ -59,8 +68,11 @@ while True:
                     shop_list.append(i)
         except:
             print("You still need to create a list.\n")
+    elif add == "/help":
+        can_be_added = False
+        show_commands()
     elif add == "/leave":
-        break     
+        break  
         
     if can_be_added:
         shop_list.append(add)
