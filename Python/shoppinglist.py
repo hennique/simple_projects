@@ -14,44 +14,44 @@ while True:
     print()
    
     # Decides if the item can be added
-    ap = True
+    can_be_added = True
     
     # Stop the user from adding an empty item
     if add == "":
         print("Please add something.\n")
-        ap = False
+        can_be_added = False
  
     # Deletes an item if it already exists in the list
     for item in shop_list:
         if item == add:
             shop_list.remove(add)
-            ap = False
+            can_be_added = False
   
     if add == "/clean":
-        ap = False
+        can_be_added = False
         shop_list.clear()
     # Creates a pre-defined list (food basket)   
     elif add == "/basket":
-        ap = False
+        can_be_added = False
         
         shop_list = ["Rice", "Beans", "Oil", "Noodles", "Salt", "Sugar", "Cookie Package", "Milk", "Coffee"]
     elif add == "/create":
-        ap = False
+        can_be_added = False
         print("List creation")
         print("/ready to finish\n")
         li = []
         
         # Loop to allow the user to create the list
         while True:
-            cria = input(": ")
+            create_list = input(": ")
             
-            if cria == "/ready":
+            if create_list == "/ready":
                 break
                
-            li.append(cria)
+            li.append(create_list)
             
     elif add == "/list":
-        ap = False
+        can_be_added = False
         try:
             # Adds items from the list created by the user to the main list
             for i in li:
@@ -62,7 +62,7 @@ while True:
     elif add == "/leave":
         break     
         
-    if ap:
+    if can_be_added:
         shop_list.append(add)
         
     # Informs you that the list is empty if there are no items in it
