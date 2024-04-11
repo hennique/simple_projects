@@ -1,6 +1,3 @@
-from traceback import print_tb
-
-
 shop_list = []
  
 print("******************")
