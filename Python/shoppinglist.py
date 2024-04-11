@@ -5,7 +5,7 @@ print("Shopping List")
 print("******************")
 print("Type an item to add it, and \nagain to remove it\n")
 print("Commands")
-print("/cesta - Create a list with a basic food basket\n/limpar - Remove all list items\n/criar - Create a list\n/lista - Show the list you created\n/sair - Leave.")
+print("/basket - Create a list with a basic food basket\n/clean - Remove all list items\n/create - Create a list\n/list - Show the list you created\n/leave - Leave.")
 print()
  
 # Main loop
@@ -27,30 +27,30 @@ while True:
             shop_list.remove(add)
             ap = False
   
-    if add == "/limpar":
+    if add == "/clean":
         ap = False
         shop_list.clear()
     # Creates a pre-defined list (food basket)   
-    elif add == "/cesta":
+    elif add == "/basket":
         ap = False
         
         shop_list = ["Rice", "Beans", "Oil", "Noodles", "Salt", "Sugar", "Cookie Package", "Milk", "Coffee"]
-    elif add == "/criar":
+    elif add == "/create":
         ap = False
         print("List creation")
-        print("/pronto to finish\n")
+        print("/ready to finish\n")
         li = []
         
         # Loop to allow the user to create the list
         while True:
             cria = input(": ")
             
-            if cria == "/pronto":
+            if cria == "/ready":
                 break
                
             li.append(cria)
             
-    elif add == "/lista":
+    elif add == "/list":
         ap = False
         try:
             # Adds items from the list created by the user to the main list
@@ -59,7 +59,7 @@ while True:
                     shop_list.append(i)
         except:
             print("You still need to create a list.\n")
-    elif add == "/sair":
+    elif add == "/leave":
         break     
         
     if ap:
