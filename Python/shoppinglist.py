@@ -17,7 +17,7 @@ while True:
     ap = True
     
     # Stop the user from adding an empty item
-    if adicionar == "":
+    if add == "":
         print("Please add something.\n")
         ap = False
  
