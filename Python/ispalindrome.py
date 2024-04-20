@@ -1,15 +1,16 @@
 def is_palindrome(word):
     normal_word = []
     reversed_word = []
-    
-    # Check each word letter and add them to a list
+    special_characters = [" ", ",", ".", "?", "'", "!", ":"]
+
+    # Remove the special characters by adding only letters from the alphabet
     for i in word:
-        if i not in [" ", ",", ".", "?", "'", "!"]:
+        if i not in special_characters:
             normal_word.append(i)
 
     # Reverse the word and do the same
     for i in word[::-1]:
-        if i not in [" ", ",", ".", "?", "'", "!"]:
+        if i not in special_characters:
             reversed_word.append(i)
     
     # Join the list to a string so it can be compared
@@ -22,4 +23,9 @@ def is_palindrome(word):
     else:
         return "Isn't a palindrome"
     
-print(is_palindrome(input("Write a palindrome: ")))
+while True:
+    a = input("Write a palindrome: ")
+    if a == "exit()":
+        break
+
+    print(is_palindrome(a))
