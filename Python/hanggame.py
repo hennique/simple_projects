@@ -1,6 +1,6 @@
 import random
  
-words = ["life", "home"]
+words = ["life", "home", "wife", "apple", "son", "husband", "daughter", "soul", "hand"]
  
 print("Hangman Game")
  
