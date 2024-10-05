@@ -10,6 +10,8 @@ def locate_pixel(color: list[int] | None, x1: int = 0, y1: int = 0, x2: int = im
     y, x = np.where(np.all(image_array == color, -1))
 
     coordinates = []
+
+    # Allows for correct coordinates if the desired area is different from screen resolution
     for i in list(zip(x, y)):
         # Ignore any pixel outside the desired area
         if ((i[0] > x1) and (i[1] > y1)) and ((i[0] < x2) and (i[1] < y2)):
