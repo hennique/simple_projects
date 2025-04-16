@@ -12,7 +12,7 @@ while True:
         
     index.append(rand_n)
 
-    new_list.append(nums[rand_n])
+    new_list.append(old_list[rand_n])
         
     if len(old_list) == len(new_list):
         break
