@@ -2,7 +2,7 @@
 
 A collection of simple projects to familiarize myself with Git/GitHub and learn programming. 
 
-# FAQ
+# Questions that you may have
 
 Q: Why not just create a repository for each of them?
 
