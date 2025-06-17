@@ -1,6 +1,6 @@
 # simple_projects
 
-A collection of simple projects to familiarize myself with Git/GitHub and learn programming. 
+A collection of simple projects to familiarize myself with Git/GitHub, test a few things, and learn programming. 
 
 # Questions that you may have
 
