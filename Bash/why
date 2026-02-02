@@ -1,0 +1,85 @@
+#!/bin/bash
+# Simple bash script so I can add motives to why I installed certain packages
+# If you want to use it, just download the file, put it in your $HOME/.local/bin folder and give it permission to execute with "chmod +x $HOME/.local/bin/why"
+# Then run it with "sudo $HOME/.local/bin/why" once, so it can generate the bash completion file, it won't be needed a second time
+# It's not fool proof, so use with caution
+# If you want to uninstall it, run the following command: "rm -r $HOME/.local/share/why/ && rm $HOME/.local/bin/why && sudo rm /etc/bash_completion.d/why"
+
+why_packages_list=$HOME/.local/share/why/packages.txt
+
+if [[ ! -d "$HOME/.local/share/why" ]]; then
+	mkdir $HOME/.local/share/why
+	touch $why_packages_list
+fi
+
+if [[ ! -e "/etc/bash_completion.d/why" ]]; then
+	touch /etc/bash_completion.d/why
+	echo '_why()
+{
+	local cur prev
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+	if [[ $COMP_CWORD == 1 ]]; then
+		COMPREPLY=( $(compgen -W "add remove list --help $(awk -F"=" "{print \$1}" $HOME/.local/share/why/packages.txt)" -- ${cur}) )
+		return 0
+	fi
+	
+	opt="${COMP_WORDS[1]}"
+	case $opt in
+		"add")
+			if [[ $COMP_CWORD == 2 ]]; then
+				COMPREPLY=( $(_xfunc dpkg _comp_dpkg_installed_packages $cur) )
+				return 0
+			fi
+			;;
+		"remove")
+			if [[ -z "$cur" ]] && [[ $COMP_CWORD == 2 ]]; then
+				COMPREPLY=( $(awk -F"=" "{print \$1}" $HOME/.local/share/why/packages.txt) )
+				return 0
+			elif [[ $COMP_CWORD == 2 ]]; then
+				COMPREPLY=( $(awk -F"=" "{print \$1}" $HOME/.local/share/why/packages.txt | grep "$cur") )
+				return 0
+			fi
+			;;
+	esac
+}
+
+complete -F _why why' > /etc/bash_completion.d/why
+fi
+
+case $1 in
+	"add")
+		if [[ -z $3 ]]; then
+			echo "Add the reason for installing the package:"
+			read reason
+			echo "$2=$reason" >> $why_packages_list
+		else
+			echo "$2=$3" >> $why_packages_list
+		fi
+		;;
+	"remove")
+		sed -i "/$2/d" $why_packages_list
+		;;
+	"list")
+		awk -F"=" '{print $1}' $why_packages_list
+		;;
+	"--help")
+		echo "Usage: why [option] [package]"
+		echo "why package -- Shows the reason for installing a package"
+		echo "why add package [reason] -- Adds a package with a reason for installing it"
+		echo "why remove package -- Removes a package and the reason for installing it"
+		echo "why list -- Lists all packages that have a reason for installing it"
+		;;
+	*) # Assume that any other parameter is a package that the user wants to check
+		# In case the user didn't type a parameter
+		if [[ -n $1 ]]; then
+			grep "$1=" $why_packages_list | awk -F"=" '{print $2}'
+		else
+			echo "Usage: why [option] [package]"
+			echo "Try 'why --help' for more information"
+		fi
+		;;
+esac
+
